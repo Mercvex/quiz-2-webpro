@@ -194,7 +194,3 @@ Hosted on alwaysdata (free plan): Tomcat 9 + MariaDB. The project uses the `java
 | Medina Kusuma Prianda | 5025251240 | Implemented and fixed the JSP/Servlet pages for Authors, Categories, Books and Reading Goals (including deletion errors and UI styling). Responsible for build and deployment: configured Maven and Tomcat, set up the alwaysdata hosting and database, deployed the WAR, and solved the Tomcat 9 (`javax`) and memory-limit problems. Managed the GitHub repository, applied output escaping against cross-site scripting, and tested the application on the live website. |
 
 ---
-
-## License
-
-University project — for educational use.
