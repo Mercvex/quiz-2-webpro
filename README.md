@@ -186,7 +186,12 @@ Hosted on alwaysdata (free plan): Tomcat 9 + MariaDB. The project uses the `java
 
 | Name | Student ID | Contribution |
 |------------------------------|--------------|---------------------------------------------------------------------------------------------------------------------------|
-| _Gabriella Putri Atmaja Adi_ | _5025251057_ | _Converted the previous website from laravel to JSP,  adding some mysql features into the website, and making the report_ |
+## Team
+
+| Name | Student ID | Contribution |
+|---|---|---|
+| Gabriella Putri Atmaja Adi | 5025251057 | Converted the previous Laravel website to JSP, added the MySQL features, and wrote the report. |
+| Medina Kusuma Prianda | 5025251240 | Implemented and fixed the JSP/Servlet pages for Authors, Categories, Books and Reading Goals (including deletion errors and UI styling). Responsible for build and deployment: configured Maven and Tomcat, set up the alwaysdata hosting and database, deployed the WAR, and solved the Tomcat 9 (`javax`) and memory-limit problems. Managed the GitHub repository, applied output escaping against cross-site scripting, and tested the application on the live website. |
 
 ---
 
