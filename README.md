@@ -185,8 +185,8 @@ Hosted on alwaysdata (free plan): Tomcat 9 + MariaDB. The project uses the `java
 ## Team
 
 | Name | Student ID | Contribution |
-|---|---|---|
-| _(fill in)_ | _(fill in)_ | _(fill in)_ |
+|------------------------------|--------------|---------------------------------------------------------------------------------------------------------------------------|
+| _Gabriella Putri Atmaja Adi_ | _5025251057_ | _Converted the previous website from laravel to JSP,  adding some mysql features into the website, and making the report_ |
 
 ---
 
