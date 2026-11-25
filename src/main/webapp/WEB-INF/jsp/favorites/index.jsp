@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="My Favorites" scope="request"/>
 <c:set var="activeNav" value="favorites" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -24,8 +25,8 @@
                     <c:choose>
                         <c:when test="${not empty book.coverImage}">
                             <div class="book-cover">
-                                <img src="${pageContext.request.contextPath}/${book.coverImage}"
-                                     alt="Cover of ${book.title}">
+                                <img src="${pageContext.request.contextPath}/${fn:escapeXml(book.coverImage)}"
+                                     alt="Cover of ${fn:escapeXml(book.title)}">
                             </div>
                         </c:when>
                         <c:otherwise>
@@ -33,14 +34,14 @@
                         </c:otherwise>
                     </c:choose>
                     <div class="book-info">
-                        <h2 class="book-title">${book.title}</h2>
-                        <p class="book-author">${book.authorName}</p>
-                        <span class="book-status">${book.status.display}</span>
+                        <h2 class="book-title">${fn:escapeXml(book.title)}</h2>
+                        <p class="book-author">${fn:escapeXml(book.authorName)}</p>
+                        <span class="book-status">${fn:escapeXml(book.status.display)}</span>
                         <div class="book-actions">
-                            <a href="${pageContext.request.contextPath}/books/${book.bookId}/edit">
+                            <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/edit">
                                     Edit
                                 </a>
-                            <form action="${pageContext.request.contextPath}/books/${book.bookId}/favorite"
+                            <form action="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/favorite"
                                 method="POST">
                                 <button type="submit" title="Remove from favorites">
                                     ★ Remove

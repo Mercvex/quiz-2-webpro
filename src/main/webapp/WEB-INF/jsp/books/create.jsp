@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Add a New Book" scope="request"/>
 <c:set var="activeNav" value="addbook" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -16,7 +17,7 @@
         <div class="form-group">
             <label for="title">Book Title *</label>
             <input class="form-control" type="text" id="title" name="title"
-                   value="${param.title}" placeholder="Enter the book title" required>
+                   value="${fn:escapeXml(param.title)}" placeholder="Enter the book title" required>
         </div>
 
         <div class="form-group">
@@ -24,9 +25,9 @@
             <select class="form-control" id="author_id" name="author_id" required>
                 <option value="">— Select an author —</option>
                 <c:forEach var="author" items="${authors}">
-                    <option value="${author.authorId}"
+                    <option value="${fn:escapeXml(author.authorId)}"
                             ${param.author_id == author.authorId ? 'selected' : ''}>
-                        ${author.name}
+                        ${fn:escapeXml(author.name)}
                     </option>
                 </c:forEach>
             </select>
@@ -40,9 +41,9 @@
             <select class="form-control" id="category_id" name="category_id">
                 <option value="">— No category —</option>
                 <c:forEach var="cat" items="${categories}">
-                    <option value="${cat.categoryId}"
+                    <option value="${fn:escapeXml(cat.categoryId)}"
                             ${param.category_id == cat.categoryId ? 'selected' : ''}>
-                        ${cat.name}
+                        ${fn:escapeXml(cat.name)}
                     </option>
                 </c:forEach>
             </select>
@@ -78,19 +79,19 @@
             <div class="form-group">
                 <label for="current_page">Current Page <span class="muted">(Optional)</span></label>
                 <input class="form-control" type="number" id="current_page" name="current_page"
-                       min="0" value="${param.current_page}" placeholder="0">
+                       min="0" value="${fn:escapeXml(param.current_page)}" placeholder="0">
             </div>
             <div class="form-group">
                 <label for="total_pages">Total Pages <span class="muted">(Optional)</span></label>
                 <input class="form-control" type="number" id="total_pages" name="total_pages"
-                       min="1" value="${param.total_pages}" placeholder="e.g. 320">
+                       min="1" value="${fn:escapeXml(param.total_pages)}" placeholder="e.g. 320">
             </div>
         </div>
 
         <div class="form-group">
             <label for="summary">Short Summary <span class="muted">(Optional)</span></label>
             <textarea class="form-control" id="summary" name="summary" rows="5"
-                      placeholder="Write a short summary...">${param.summary}</textarea>
+                      placeholder="Write a short summary...">${fn:escapeXml(param.summary)}</textarea>
         </div>
 
         <div class="form-actions">

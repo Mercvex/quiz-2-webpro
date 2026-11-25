@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%--
     _layout.jsp — shared sidebar + header shell.
     Usage: include at top of every protected page.
@@ -10,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${pageTitle} — My Personal Library</title>
+    <title>${fn:escapeXml(pageTitle)} — My Personal Library</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css">
 </head>
 <body>
@@ -18,11 +19,11 @@
     <aside class="sidebar">
         <div class="profile">
             <div class="profile-avatar">
-                ${sessionScope.currentUser.initials}
+                ${fn:escapeXml(sessionScope.currentUser.initials)}
             </div>
             <div>
-                <div class="profile-name">${sessionScope.userName}</div>
-                <div class="profile-handle">${sessionScope.currentUser.handle}</div>
+                <div class="profile-name">${fn:escapeXml(sessionScope.userName)}</div>
+                <div class="profile-handle">${fn:escapeXml(sessionScope.currentUser.handle)}</div>
             </div>
         </div>
 
@@ -72,17 +73,17 @@
         <header class="topbar">
             <form class="global-search" action="${pageContext.request.contextPath}/books" method="GET">
                 <input type="search" name="search" placeholder="Search books, authors, or categories..."
-                       value="${param.search}" aria-label="Search books">
+                       value="${fn:escapeXml(param.search)}" aria-label="Search books">
             </form>
         </header>
 
         <div class="page-content">
             <%-- Flash message --%>
             <c:if test="${not empty sessionScope.flash}">
-                <div class="alert-success">${sessionScope.flash}</div>
+                <div class="alert-success">${fn:escapeXml(sessionScope.flash)}</div>
                 <c:remove var="flash" scope="session"/>
             </c:if>
             <%-- Error message passed as request attribute --%>
             <c:if test="${not empty requestScope.error}">
-                <div class="alert-error">${requestScope.error}</div>
+                <div class="alert-error">${fn:escapeXml(requestScope.error)}</div>
             </c:if>

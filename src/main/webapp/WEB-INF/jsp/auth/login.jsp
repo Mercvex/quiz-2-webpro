@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +15,14 @@
         <p class="auth-subtitle">Enter your email and password below to log in</p>
 
         <% if (request.getAttribute("error") != null) { %>
-            <div class="alert-error"><%= request.getAttribute("error") %></div>
+            <div class="alert-error">${fn:escapeXml(requestScope.error)}</div>
         <% } %>
 
         <form method="POST" action="${pageContext.request.contextPath}/login" class="auth-form">
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input class="form-control" type="email" id="email" name="email"
-                       value="${param.email}" required autofocus placeholder="email@example.com">
+                       value="${fn:escapeXml(param.email)}" required autofocus placeholder="email@example.com">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

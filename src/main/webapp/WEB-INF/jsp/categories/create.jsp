@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Add Category" scope="request"/>
 <c:set var="activeNav" value="categories" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -9,12 +10,12 @@
         <div class="form-group">
             <label for="name">Category Name *</label>
             <input class="form-control" type="text" id="name" name="name"
-                   value="${param.name}" required placeholder="e.g. Fiction">
+                   value="${fn:escapeXml(param.name)}" required placeholder="e.g. Fiction">
         </div>
         <div class="form-group">
             <label for="description">Description <span class="muted">(Optional)</span></label>
             <textarea class="form-control" id="description" name="description" rows="3"
-                      placeholder="Short description...">${param.description}</textarea>
+                      placeholder="Short description...">${fn:escapeXml(param.description)}</textarea>
         </div>
         <div class="form-actions">
             <a href="${pageContext.request.contextPath}/categories" class="secondary-btn">Cancel</a>

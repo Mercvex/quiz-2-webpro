@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="${book.title}" scope="request"/>
 <c:set var="activeNav" value="books" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -12,8 +13,8 @@
 <div class="panel book-detail">
     <c:choose>
         <c:when test="${not empty book.coverImage}">
-            <img src="${pageContext.request.contextPath}/${book.coverImage}"
-                 alt="Cover of ${book.title}" class="book-detail-cover">
+            <img src="${pageContext.request.contextPath}/${fn:escapeXml(book.coverImage)}"
+                 alt="Cover of ${fn:escapeXml(book.title)}" class="book-detail-cover">
         </c:when>
         <c:otherwise>
             <div class="book-detail-cover book-cover-placeholder">No Cover Available</div>
@@ -21,23 +22,23 @@
     </c:choose>
 
     <div class="book-detail-info">
-        <h2>${book.title}</h2>
-        <p class="muted">by ${book.authorName}</p>
+        <h2>${fn:escapeXml(book.title)}</h2>
+        <p class="muted">by ${fn:escapeXml(book.authorName)}</p>
 
         <p><strong>Category:</strong>
             <c:choose>
-                <c:when test="${not empty book.categoryName}">${book.categoryName}</c:when>
+                <c:when test="${not empty book.categoryName}">${fn:escapeXml(book.categoryName)}</c:when>
                 <c:otherwise>Not specified</c:otherwise>
             </c:choose>
         </p>
-        <p><strong>Status:</strong> <span class="book-status">${book.status.display}</span></p>
+        <p><strong>Status:</strong> <span class="book-status">${fn:escapeXml(book.status.display)}</span></p>
         <p><strong>Pages:</strong>
             <c:choose>
                 <c:when test="${book.currentPage != null and book.totalPages != null}">
-                    ${book.currentPage} / ${book.totalPages} (${book.progressPercent}%)
+                    ${fn:escapeXml(book.currentPage)} / ${fn:escapeXml(book.totalPages)} (${fn:escapeXml(book.progressPercent)}%)
                 </c:when>
                 <c:when test="${book.currentPage != null}">
-                    Page ${book.currentPage} (total unknown)
+                    Page ${fn:escapeXml(book.currentPage)} (total unknown)
                 </c:when>
                 <c:otherwise>Not tracked</c:otherwise>
             </c:choose>
@@ -46,7 +47,7 @@
         <c:if test="${not empty book.summary}">
             <div class="book-summary">
                 <h3>Summary</h3>
-                <p>${book.summary}</p>
+                <p>${fn:escapeXml(book.summary)}</p>
             </div>
         </c:if>
 
@@ -54,15 +55,15 @@
             <h3>Book File</h3>
             <c:choose>
                 <c:when test="${book.hasFile()}">
-                    <p><span class="file-info">${book.originalFilename}</span></p>
-                    <a href="${pageContext.request.contextPath}/books/${book.bookId}/read"
+                    <p><span class="file-info">${fn:escapeXml(book.originalFilename)}</span></p>
+                    <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/read"
                        class="primary-btn" style="margin-top:10px;display:inline-flex;">
                         📖 Read Book
                     </a>
                 </c:when>
                 <c:otherwise>
                     <p class="muted">No book file uploaded yet.</p>
-                    <a href="${pageContext.request.contextPath}/books/${book.bookId}/edit"
+                    <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/edit"
                        class="secondary-btn" style="margin-top:8px;display:inline-flex;">
                         Upload a File
                     </a>
@@ -72,13 +73,13 @@
 
         <div class="form-actions" style="justify-content:flex-start;flex-wrap:wrap;gap:10px;">
             <a href="${pageContext.request.contextPath}/books" class="secondary-btn">← My Books</a>
-            <form action="${pageContext.request.contextPath}/books/${book.bookId}/favorite" method="POST">
+            <form action="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/favorite" method="POST">
                 <button type="submit" class="secondary-btn">
                     ${isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
                 </button>
             </form>
-            <a href="${pageContext.request.contextPath}/books/${book.bookId}/edit" class="primary-btn">Edit Book</a>
-            <form action="${pageContext.request.contextPath}/books/${book.bookId}/delete" method="POST"
+            <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/edit" class="primary-btn">Edit Book</a>
+            <form action="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}/delete" method="POST"
                   onsubmit="return confirm('Delete this book? Notes, logs, and goals will also be removed.')">
                 <button type="submit" class="btn-danger">Delete Book</button>
             </form>
@@ -92,7 +93,7 @@
         <h2>Private Notes</h2>
     </div>
 
-    <form action="${pageContext.request.contextPath}/notes/create?bookId=${book.bookId}"
+    <form action="${pageContext.request.contextPath}/notes/create?bookId=${fn:escapeXml(book.bookId)}"
           method="POST" class="note-form">
         <div class="form-group">
             <textarea class="form-control" name="content" rows="3"
@@ -109,12 +110,12 @@
             <div class="notes-list" style="margin-top:16px;">
                 <c:forEach var="note" items="${notes}">
                     <div class="note-item">
-                        <p class="note-content">${note.content}</p>
+                        <p class="note-content">${fn:escapeXml(note.content)}</p>
                         <div class="note-meta">
-                            <span class="muted" style="font-size:12px;">${note.createdAt}</span>
+                            <span class="muted" style="font-size:12px;">${fn:escapeXml(note.createdAt)}</span>
                             <div class="note-actions">
-                                <a href="${pageContext.request.contextPath}/notes/${note.noteId}/edit">Edit</a>
-                                <form action="${pageContext.request.contextPath}/notes/${note.noteId}/delete"
+                                <a href="${pageContext.request.contextPath}/notes/${fn:escapeXml(note.noteId)}/edit">Edit</a>
+                                <form action="${pageContext.request.contextPath}/notes/${fn:escapeXml(note.noteId)}/delete"
                                       method="POST" style="display:inline;"
                                       onsubmit="return confirm('Delete this note?')">
                                     <button type="submit" class="btn-link-danger">Delete</button>
@@ -133,7 +134,7 @@
     <div class="section-heading">
         <h2>Log a Reading Session</h2>
     </div>
-    <form action="${pageContext.request.contextPath}/logs/create?bookId=${book.bookId}"
+    <form action="${pageContext.request.contextPath}/logs/create?bookId=${fn:escapeXml(book.bookId)}"
           method="POST" class="log-form">
         <div class="form-row">
             <div class="form-group">

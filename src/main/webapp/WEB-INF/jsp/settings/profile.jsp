@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Profile Settings" scope="request"/>
 <c:set var="activeNav" value="settings" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -9,12 +10,12 @@
         <div class="form-group">
             <label for="name">Full Name *</label>
             <input class="form-control" type="text" id="name" name="name"
-                   value="${sessionScope.userName}" required>
+                   value="${fn:escapeXml(sessionScope.userName)}" required>
         </div>
         <div class="form-group">
             <label for="email">Email Address *</label>
             <input class="form-control" type="email" id="email" name="email"
-                   value="${sessionScope.userEmail}" required>
+                   value="${fn:escapeXml(sessionScope.userEmail)}" required>
         </div>
         <div class="form-actions">
             <button type="submit" class="primary-btn">Save Changes</button>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Authors" scope="request"/>
 <c:set var="activeNav" value="authors" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -25,13 +26,13 @@
                 <tbody>
                 <c:forEach var="a" items="${authors}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/authors/${a.authorId}"><strong>${a.name}</strong></a></td>
-                        <td class="muted">${not empty a.bio ? a.bio : '—'}</td>
+                        <td><a href="${pageContext.request.contextPath}/authors/${fn:escapeXml(a.authorId)}"><strong>${fn:escapeXml(a.name)}</strong></a></td>
+                        <td class="muted">${not empty a.bio ? fn:escapeXml(a.bio) : '—'}</td>
                         <td class="table-actions">
-                            <a href="${pageContext.request.contextPath}/authors/${a.authorId}/edit">Edit</a>
-                            <form action="${pageContext.request.contextPath}/authors/${a.authorId}/delete"
+                            <a href="${pageContext.request.contextPath}/authors/${fn:escapeXml(a.authorId)}/edit">Edit</a>
+                            <form action="${pageContext.request.contextPath}/authors/${fn:escapeXml(a.authorId)}/delete"
                                   method="POST" style="display:inline;"
-                                  onsubmit="return confirm('Delete author \'${a.name}\'? This will fail if they still have books.')">
+                                  onsubmit="return confirm('Delete this author? This will fail if they still have books.')">
                                 <button type="submit" class="btn-link-danger">Delete</button>
                             </form>
                         </td>

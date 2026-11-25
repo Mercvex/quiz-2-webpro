@@ -1,28 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Dashboard" scope="request"/>
 <c:set var="activeNav" value="dashboard" scope="request"/>
 <%@ include file="_layout_top.jsp" %>
 
 <section class="page-heading">
-    <h1>Hi, ${sessionScope.userName}</h1>
+    <h1>Hi, ${fn:escapeXml(sessionScope.userName)}</h1>
     <p>Here's a quick look at your reading collection.</p>
 </section>
 
 <section class="dashboard-stats">
     <article class="panel stat-card">
         <p class="stat-label">Total Books</p>
-        <h2 class="stat-number">${totalBooks}</h2>
+        <h2 class="stat-number">${fn:escapeXml(totalBooks)}</h2>
         <p class="muted">Books in your collection</p>
     </article>
     <article class="panel stat-card">
         <p class="stat-label">Currently Reading</p>
-        <h2 class="stat-number">${currentlyReading}</h2>
+        <h2 class="stat-number">${fn:escapeXml(currentlyReading)}</h2>
         <p class="muted">Books you're reading now</p>
     </article>
     <article class="panel stat-card">
         <p class="stat-label">Finished Reading</p>
-        <h2 class="stat-number">${finishedReading}</h2>
+        <h2 class="stat-number">${fn:escapeXml(finishedReading)}</h2>
         <p class="muted">Books you've completed</p>
     </article>
 </section>
@@ -40,20 +41,20 @@
             </c:when>
             <c:otherwise>
                 <c:forEach var="book" items="${recentBooks}">
-                    <a href="${pageContext.request.contextPath}/books/${book.bookId}" class="recent-book">
+                    <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}" class="recent-book">
                         <c:choose>
                             <c:when test="${not empty book.coverImage}">
-                                <img src="${pageContext.request.contextPath}/${book.coverImage}"
-                                     alt="Cover of ${book.title}" class="recent-book-cover">
+                                <img src="${pageContext.request.contextPath}/${fn:escapeXml(book.coverImage)}"
+                                     alt="Cover of ${fn:escapeXml(book.title)}" class="recent-book-cover">
                             </c:when>
                             <c:otherwise>
                                 <div class="recent-book-cover recent-book-placeholder">No Cover</div>
                             </c:otherwise>
                         </c:choose>
                         <div class="recent-book-info">
-                            <h3>${book.title}</h3>
-                            <p>${book.authorName}</p>
-                            <span class="book-status">${book.status.display}</span>
+                            <h3>${fn:escapeXml(book.title)}</h3>
+                            <p>${fn:escapeXml(book.authorName)}</p>
+                            <span class="book-status">${fn:escapeXml(book.status.display)}</span>
                         </div>
                     </a>
                 </c:forEach>
@@ -89,15 +90,15 @@
         <div class="section-heading"><h2>Reading Progress</h2></div>
         <p class="muted">Completed books in your collection</p>
         <div class="progress-track">
-            <div class="progress-fill" style="width:${completionPct}%"></div>
+            <div class="progress-fill" style="width:${fn:escapeXml(completionPct)}%"></div>
         </div>
         <div class="progress-details">
-            <strong>${completionPct}%</strong>
-            <span class="muted">${finishedReading} of ${totalBooks} books finished</span>
+            <strong>${fn:escapeXml(completionPct)}%</strong>
+            <span class="muted">${fn:escapeXml(finishedReading)} of ${fn:escapeXml(totalBooks)} books finished</span>
         </div>
         <c:if test="${not empty avgProgress}">
             <p class="muted" style="margin-top:14px;font-size:13px;">
-                Average page progress across tracked books: <strong>${avgProgress}%</strong>
+                Average page progress across tracked books: <strong>${fn:escapeXml(avgProgress)}%</strong>
             </p>
         </c:if>
     </div>
@@ -113,10 +114,10 @@
             </c:when>
             <c:otherwise>
                 <c:forEach var="book" items="${favoriteBooks}" end="3">
-                    <a href="${pageContext.request.contextPath}/books/${book.bookId}" class="favorite-book">
+                    <a href="${pageContext.request.contextPath}/books/${fn:escapeXml(book.bookId)}" class="favorite-book">
                         <c:choose>
                             <c:when test="${not empty book.coverImage}">
-                                <img src="${pageContext.request.contextPath}/${book.coverImage}"
+                                <img src="${pageContext.request.contextPath}/${fn:escapeXml(book.coverImage)}"
                                      alt="Cover" class="favorite-book-cover">
                             </c:when>
                             <c:otherwise>
@@ -124,8 +125,8 @@
                             </c:otherwise>
                         </c:choose>
                         <div>
-                            <h3>${book.title}</h3>
-                            <p class="muted">${book.authorName}</p>
+                            <h3>${fn:escapeXml(book.title)}</h3>
+                            <p class="muted">${fn:escapeXml(book.authorName)}</p>
                         </div>
                     </a>
                 </c:forEach>

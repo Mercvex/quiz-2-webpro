@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="pageTitle" value="Categories" scope="request"/>
 <c:set var="activeNav" value="categories" scope="request"/>
 <%@ include file="../_layout_top.jsp" %>
@@ -21,13 +22,13 @@
                 <tbody>
                 <c:forEach var="c" items="${categories}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/categories/${c.categoryId}"><strong>${c.name}</strong></a></td>
-                        <td class="muted">${not empty c.description ? c.description : '—'}</td>
+                        <td><a href="${pageContext.request.contextPath}/categories/${fn:escapeXml(c.categoryId)}"><strong>${fn:escapeXml(c.name)}</strong></a></td>
+                        <td class="muted">${not empty c.description ? fn:escapeXml(c.description) : '—'}</td>
                         <td class="table-actions">
-                            <a href="${pageContext.request.contextPath}/categories/${c.categoryId}/edit">Edit</a>
-                            <form action="${pageContext.request.contextPath}/categories/${c.categoryId}/delete"
+                            <a href="${pageContext.request.contextPath}/categories/${fn:escapeXml(c.categoryId)}/edit">Edit</a>
+                            <form action="${pageContext.request.contextPath}/categories/${fn:escapeXml(c.categoryId)}/delete"
                                   method="POST" style="display:inline;"
-                                  onsubmit="return confirm('Delete category \'${c.name}\'? Books in this category will be un-categorized.')">
+                                  onsubmit="return confirm('Delete this category? Books in this category will be un-categorized.')">
                                 <button type="submit" class="btn-link-danger">Delete</button>
                             </form>
                         </td>
