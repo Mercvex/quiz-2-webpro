@@ -1,9 +1,9 @@
 # My Personal Library — JSP Edition
 
-A personal reading tracker built with **Jakarta Server Pages (JSP)**, **Servlets**, **JDBC**, and **MySQL**.
+A personal reading tracker built with **JavaServer Pages (JSP)**, **Servlets**, **JDBC**, and **MySQL**.
 Developed for **EF234301 Web Programming — Quiz 2**. Based on an earlier Laravel/PHP Midterm project, rebuilt in JSP.
 
-**Live demo:** _(add the hosted URL here once deployed)_
+**Live demo:** https://mercvex.alwaysdata.net/
 
 ---
 
@@ -28,14 +28,14 @@ Developed for **EF234301 Web Programming — Quiz 2**. Based on an earlier Larav
 
 | Layer | Technology |
 |---|---|
-| Backend | Java 17, Jakarta Servlets, JSP (JSTL) |
+| Backend | Java 17, Servlet 4.0 (`javax.servlet`), JSP 2.3 (JSTL 1.2) |
 | Database | MySQL 8.0.16+ |
 | DB Connectivity | JDBC (`mysql-connector-j`) |
 | Password Hashing | jBCrypt |
 | File Uploads | Servlet multipart (`Part` API) |
 | Frontend | HTML5, CSS3 (custom), vanilla JS |
 | Build | Maven, WAR packaging |
-| Server | Apache Tomcat 10.1+ (Jakarta EE 10 / Servlet 6.0) |
+| Server | Apache Tomcat 9.0 (Servlet 4.0 / JSP 2.3) |
 
 ---
 
@@ -75,7 +75,7 @@ Uploaded files (covers and book files) are stored **outside** the web root, in a
 ### Prerequisites
 - Java 17+
 - Maven 3.8+
-- Apache Tomcat 10.1+
+- Apache Tomcat 9.0.x
 - MySQL 8.0.16+
 
 ### 1. Clone the repository
@@ -173,6 +173,12 @@ Cover images are served by `CoverServlet`, mapped to `/covers/*`. It reads files
 - Book, note, log, goal, and favorite operations are scoped by `user_id`.
 - `AuthFilter` redirects unauthenticated requests to `/login`.
 - Database credentials live in `db.properties`, which is git-ignored.
+
+---
+
+## Deployment
+
+Hosted on alwaysdata (free plan): Tomcat 9 + MariaDB. The project uses the `javax.*` namespace because Tomcat 9 implements Servlet 4.0. Free plan limits (256 MB RAM) are handled by capping the JVM heap via `CATALINA_OPTS`.
 
 ---
 
