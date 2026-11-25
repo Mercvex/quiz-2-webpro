@@ -1,8 +1,8 @@
 package com.mylibrary.servlet;
 
 import com.mylibrary.dao.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 public class DashboardServlet extends HttpServlet {

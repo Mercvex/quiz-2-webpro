@@ -1,6 +1,6 @@
 package com.mylibrary.util;
 
-import jakarta.servlet.ServletContext;
+import javax.servlet.ServletContext;
 import java.nio.file.Paths;
 
 /**

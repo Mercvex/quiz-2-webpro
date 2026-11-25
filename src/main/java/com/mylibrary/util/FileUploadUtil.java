@@ -1,6 +1,6 @@
 package com.mylibrary.util;
 
-import jakarta.servlet.http.Part;
+import javax.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;

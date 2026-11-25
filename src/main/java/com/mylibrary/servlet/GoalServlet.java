@@ -2,8 +2,8 @@ package com.mylibrary.servlet;
 
 import com.mylibrary.dao.*;
 import com.mylibrary.model.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;

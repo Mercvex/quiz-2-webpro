@@ -3,8 +3,8 @@ package com.mylibrary.servlet;
 import com.mylibrary.dao.UserDAO;
 import com.mylibrary.model.User;
 import com.mylibrary.util.PasswordUtil;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 /**

@@ -1,9 +1,9 @@
 package com.mylibrary.listener;
 
 import com.mylibrary.util.UploadConfig;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 import java.io.IOException;
 import java.nio.file.Files;
