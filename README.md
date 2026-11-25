@@ -183,7 +183,6 @@ Hosted on alwaysdata (free plan): Tomcat 9 + MariaDB. The project uses the `java
 ---
 
 ## Team
-
 | Name | Student ID | Contribution |
 |---|---|---|
 | Gabriella Putri Atmaja Adi | 5025251057 | Converted the previous Laravel website to JSP, added the MySQL features, and wrote the report. |
